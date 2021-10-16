@@ -33,16 +33,10 @@ public class AtendimentoService {
 			throw new Exception("Paciente Inexistente");
 		}
 		
-		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
-
-		//String dataAtendimento = dto.getDataAtendimento().format(formatter);
-						
-		 var situacao = situacaoRepository.save(Situacao.builder().descricao(dto.getDescricaosituacao()).build());
-		
 		 var atendimento = atendimentoRepository.save(Atendimento.builder()
 					.dataAtendimento(dto.getDataAtendimento())
 					.dianostico(dto.getDianostico())
-					.situacao(situacao)
+					.situacao(Situacao.builder().descricao(dto.getDescricaosituacao()).build())
 					.paciente(paciente.get())
 					.build());
 		 
